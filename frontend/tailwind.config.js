@@ -7,14 +7,55 @@ export default {
   ],
   theme: {
   	extend: {
+
+		overflowClipMargin: {
+			'content-box': 'content-box',
+		  }, 
+  		animation: {
+  			marquee: 'marquee var(--duration) infinite linear',
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+  		},
+  		keyframes: {
+  			marquee: {
+  				from: {
+  					transform: 'translateX(0)'
+  				},
+  				to: {
+  					transform: 'translateX(calc(-100% - var(--gap)))'
+  				}
+  			},
+  			'marquee-vertical': {
+  				from: {
+  					transform: 'translateY(0)'
+  				},
+  				to: {
+  					transform: 'translateY(calc(-100% - var(--gap)))'
+  				}
+  			},
+  			'marquee-vertical': {
+  				from: {
+  					transform: 'translateY(0)'
+  				},
+  				to: {
+  					transform: 'translateY(calc(-100% - var(--gap)))'
+  				}
+  			}
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		backgroundImage: {
+  			'custom-pattern': 'linear-gradient(135deg, #0A2640 25%, #1C3D5B 75%)'
+  		},
   		colors: {
+			customBlue: 'rgb(10, 38, 64)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			primaryColor: '#0A2640',
+  			secondaryColor: '#1C3D5B',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
