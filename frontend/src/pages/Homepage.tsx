@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "@/components/ui/marquee";
+import AuthButton from "@/components/AuthButton";
+import { supabase } from "@/supabaseClient";
+import { Session } from "@supabase/supabase-js";
+import { useNavigate } from "react-router";
 
 const services = [
   {
@@ -20,6 +24,19 @@ const services = [
 ];
 
 const Homepage: React.FC = () => {
+  const [, setSession] = useState<Session | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) navigate("/dashboard");
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [navigate]);
+
   return (
     <>
       <div className="bg-custom-pattern min-h-screen text-white font-sans overflow-hidden overflow-x-hidden">
@@ -32,9 +49,7 @@ const Homepage: React.FC = () => {
             <a href="#product" className="hover:text-gray-300 cursor-pointer">Product</a>
             <a href="#services" className="hover:text-gray-300 cursor-pointer">Services</a>
             <a href="#about" className="hover:text-gray-300 cursor-pointer">About</a>
-            <button className="bg-white text-primary px-4 py-2 rounded-full font-medium cursor-pointer">
-              Log In
-            </button>
+            <AuthButton />
           </div>
         </nav>
 
