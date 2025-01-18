@@ -6,6 +6,12 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+    InputOTP,
+    InputOTPGroup,
+    InputOTPSeparator,
+    InputOTPSlot,
+} from "@/components/ui/input-otp"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useState } from "react"
@@ -19,9 +25,13 @@ import { supabase } from "@/supabaseClient"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { useNavigate } from "react-router"
 import GoogleAuthButton from "./GoogleAuthButton"
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const AuthButton = () => {
-    const [authTab, setAuthTab] = useState<"Login" | "Signup" | "Forgot Password">("Login");
+    const [authTab, setAuthTab] = useState<"Login" | "OTP Login" | "Signup" | "Forgot Password">("Login");
+
+    const [otp, setOtp] = useState<string>("");
+
     const navigate = useNavigate();
 
     const loginForm = useForm<z.infer<typeof loginSchema>>({
@@ -151,6 +161,53 @@ const AuthButton = () => {
         }
     };
 
+    const handleOTPSignin = async (formData: z.infer<typeof forgotPasswordSchema>) => {
+        const forgotPasswordValidate = forgotPasswordSchema.safeParse({
+            email: formData.email,
+        });
+
+        if (forgotPasswordValidate.success) {
+            const email = forgotPasswordValidate.data.email as string;
+
+            const forgotPasswordResponse = await supabase.auth.signInWithOtp(
+                {
+                    email: email,
+                    options: {
+                        emailRedirectTo: `${import.meta.env.VITE_BASE_URL}/verify-otp`,
+                        shouldCreateUser: false,
+                    },
+                },
+            );
+
+            if (forgotPasswordResponse.error?.message) {
+                toast.error(forgotPasswordResponse.error.message);
+            } else {
+                toast.success("Please check your registered email for OTP");
+            }
+        } else {
+            toast.error(forgotPasswordValidate.error.message);
+        }
+    }
+
+    const handleOtpVerify = async () => {
+        const { email } = forgotPasswordForm.getValues();
+
+        if (!email) return;
+
+        const { error } = await supabase.auth.verifyOtp({
+            email: email,
+            token: otp,
+            type: "email",
+        });
+
+        if (error?.message) {
+            toast.error(error.message);
+            return;
+        }
+
+        navigate("/dashboard");
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -160,7 +217,11 @@ const AuthButton = () => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle className="text-center text-2xl">{authTab}</DialogTitle>
+                    <DialogTitle className="text-center text-2xl">
+                        {authTab === "Forgot Password" &&
+                            <IoIosArrowRoundBack className="cursor-pointer items-center" onClick={() => setAuthTab("Login")} />}
+                        {authTab}
+                    </DialogTitle>
                 </DialogHeader>
 
                 {
@@ -203,6 +264,7 @@ const AuthButton = () => {
                                 )}
                             />
                             <Button type="submit">Login</Button>
+                            <p className="text-center underline cursor-pointer" onClick={() => setAuthTab("OTP Login")}>Login with OTP</p>
                         </form>
                     </Form>
                 }
@@ -289,10 +351,68 @@ const AuthButton = () => {
                 {
                     authTab === "Forgot Password" &&
                     <Form {...forgotPasswordForm}>
-                        <form>
-
+                        <form onSubmit={forgotPasswordForm.handleSubmit(
+                            handleForgotPassword
+                        )}
+                            className="flex flex-col space-y-5">
+                            <FormField
+                                control={forgotPasswordForm.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input id="email" placeholder="e.g. john@doe.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit">Send Email</Button>
                         </form>
                     </Form>
+                }
+                {
+                    authTab === "OTP Login" &&
+                    <>
+                        <Form {...forgotPasswordForm}>
+                            <form onSubmit={forgotPasswordForm.handleSubmit(
+                                handleOTPSignin
+                            )}
+                                className="flex flex-col space-y-5">
+                                <FormField
+                                    control={forgotPasswordForm.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            <FormControl>
+                                                <Input id="email" placeholder="e.g. john@doe.com" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <Button type="submit">
+                                    Send OTP
+                                </Button>
+                            </form>
+                        </Form>
+                        <InputOTP className="flex w-full" maxLength={6} value={otp} onChange={(otp) => setOtp(otp)}>
+                            <InputOTPGroup className="flex flex-1 justify-center">
+                                <InputOTPSlot index={0} />
+                                <InputOTPSlot index={1} />
+                                <InputOTPSlot index={2} />
+                            </InputOTPGroup>
+                            <InputOTPSeparator />
+                            <InputOTPGroup className="flex flex-1 justify-center">
+                                <InputOTPSlot index={3} />
+                                <InputOTPSlot index={4} />
+                                <InputOTPSlot index={5} />
+                            </InputOTPGroup>
+                        </InputOTP>
+                        <Button onClick={handleOtpVerify}>Verify OTP</Button>
+                    </>
                 }
                 <DialogFooter className="flex">
                     {authTab !== "Forgot Password" ?
@@ -304,10 +424,26 @@ const AuthButton = () => {
                             <GoogleAuthButton />
                             {authTab === "Login" ?
                                 <div className="flex justify-between">
-                                    <span className="underline cursor-pointer" onClick={() => setAuthTab("Forgot Password")}>Forgot Password?</span>
-                                    <p>New here?&nbsp;<span className="underline cursor-pointer" onClick={() => setAuthTab("Signup")}>Register</span></p>
+                                    <span className="underline cursor-pointer" onClick={() => setAuthTab("Forgot Password")}>
+                                        Forgot Password?
+                                    </span>
+                                    <p>
+                                        New here?&nbsp;
+                                        <span className="underline cursor-pointer" onClick={() => setAuthTab("Signup")}>
+                                            Register
+                                        </span>
+                                    </p>
                                 </div>
-                                : <p className="flex justify-center">Already registered?&nbsp;<span className="underline cursor-pointer" onClick={() => setAuthTab("Login")}>Login</span></p>
+                                : authTab === "OTP Login" ?
+                                    <p className="flex justify-center underline cursor-pointer" onClick={() => setAuthTab("Login")}>
+                                        Login with Password
+                                    </p> :
+                                    <p className="flex justify-center">
+                                        Already registered?&nbsp;
+                                        <span className="underline cursor-pointer" onClick={() => setAuthTab("Login")}>
+                                            Login
+                                        </span>
+                                    </p>
                             }
                         </div> : <></>}
                 </DialogFooter>

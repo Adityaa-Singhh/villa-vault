@@ -38,3 +38,8 @@ export const signupSchema = z.object({
 export const forgotPasswordSchema = z.object({
     email: z.string().email(),
 });
+
+export const updatePasswordSchema = z.object({
+    newPassword: passwordSchema,
+    confirmPassword: passwordSchema,
+});
