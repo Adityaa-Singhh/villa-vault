@@ -4,6 +4,7 @@ import AuthButton from "@/components/AuthButton";
 import { supabase } from "@/supabaseClient";
 import { Session } from "@supabase/supabase-js";
 import { useNavigate } from "react-router";
+import Footer from "@/components/Footer";
 
 const services = [
   {
@@ -358,6 +359,8 @@ const Homepage: React.FC = () => {
 
 
         </div>
+
+        <Footer />
       </section>
     </>
   );
