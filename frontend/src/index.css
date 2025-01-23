@@ -76,8 +76,21 @@
 
   }
 
+
   .custom-flex {
     @apply flex items-center text-[24px] font-normal gap-x-4 leading-8 mt-6;
+  }
+
+  .section-css1{
+    @apply py-[90px] font-normal text-start text-base relative block
+  }
+
+  .section-css2{
+    @apply box-border text-slateBlue block font-sans text-[16px] font-normal leading-[23.2px] p-0 pt-0 pb-[90.4px] relative text-start  isolate w-auto h-auto
+  }
+
+  .secction-css3{
+    @apply text-stoneGray font-sans text-[16px] font-normal h-[812.438px] leading-[23.2px] pb-[90.4px] pt-[90.4px] relative text-left w-full mb-[80px] 
   }
 
 }

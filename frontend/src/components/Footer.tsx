@@ -1,52 +1,56 @@
-import { Link } from "react-router"
+import { Link } from "react-router";
 
 const Footer = () => {
-    return (
-        <footer className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 py-20 px-14">
-            <div>
-                <h3 className="text-3xl font-bold text-primaryColor">
-                    Boldo
-                </h3>
-                <p>All rights reserved</p>
-            </div>
-            <div className="flex flex-col gap-4">
-                <h4 className="text-black text-xl font-bold">Landings</h4>
-                <Link to={'/'}>
-                    Home
-                </Link>
-                <Link to={'/products'}>
-                    Products
-                </Link>
-                <Link to={'/services'}>
-                    Services
-                </Link>
-            </div>
-            <div className="flex flex-col gap-4">
-                <h4 className="text-black text-xl font-bold">Company</h4>
-                <Link to={'/'}>
-                    Home
-                </Link>
-                <Link to={'/products'}>
-                    Careers
-                </Link>
-                <Link to={'/services'}>
-                    Services
-                </Link>
-            </div>
-            <div className="flex flex-col gap-4">
-                <h4 className="text-black text-xl font-bold">Resources</h4>
-                <Link to={'/'}>
-                    Blog
-                </Link>
-                <Link to={'/products'}>
-                    Products
-                </Link>
-                <Link to={'/services'}>
-                    Services
-                </Link>
-            </div>
-        </footer>
-    )
-}
+  return (
+    <footer className="bg-gray-900 text-white py-10">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Branding Section */}
+          <div>
+            <h3 className="text-3xl font-bold mb-4">Boldo</h3>
+            <p className="text-gray-400">All rights reserved</p>
+          </div>
 
-export default Footer
+          {/* Landings Links */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">Landings</h4>
+            <div className="flex flex-col space-y-2">
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Home">Home</Link>
+              <Link to="/products" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Products">Products</Link>
+              <Link to="/services" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Services">Services</Link>
+            </div>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">Company</h4>
+            <div className="flex flex-col space-y-2">
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Home">Home</Link>
+              <Link to="/careers" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Careers">Careers</Link>
+              <Link to="/services" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Services">Services</Link>
+            </div>
+          </div>
+
+          {/* Resources Links */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">Resources</h4>
+            <div className="flex flex-col space-y-2">
+              <Link to="/blog" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Blog">Blog</Link>
+              <Link to="/products" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Products">Products</Link>
+              <Link to="/services" className="text-gray-300 hover:text-white transition-colors duration-200" aria-label="Go to Services">Services</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom Section */}
+        <div className="mt-10 border-t border-gray-700 pt-6 text-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} Boldo. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
