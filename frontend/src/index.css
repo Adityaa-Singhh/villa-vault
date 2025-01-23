@@ -76,4 +76,9 @@
 
   }
 
+  .custom-flex {
+    @apply flex items-center text-[24px] font-normal gap-x-4 leading-8 mt-6;
+  }
+
 }
+

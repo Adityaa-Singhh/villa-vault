@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
@@ -7,14 +8,14 @@ export default {
   ],
   theme: {
   	extend: {
-
-		overflowClipMargin: {
-			'content-box': 'content-box',
-		  }, 
+  		overflowClipMargin: {
+  			'content-box': 'content-box'
+  		},
   		animation: {
   			marquee: 'marquee var(--duration) infinite linear',
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
-  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		keyframes: {
   			marquee: {
@@ -33,12 +34,20 @@ export default {
   					transform: 'translateY(calc(-100% - var(--gap)))'
   				}
   			},
-  			'marquee-vertical': {
+  			'accordion-down': {
   				from: {
-  					transform: 'translateY(0)'
+  					height: '0'
   				},
   				to: {
-  					transform: 'translateY(calc(-100% - var(--gap)))'
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
   				}
   			}
   		},
@@ -51,11 +60,21 @@ export default {
   			'custom-pattern': 'linear-gradient(135deg, #0A2640 25%, #1C3D5B 75%)'
   		},
   		colors: {
-			customBlue: 'rgb(10, 38, 64)',
+  			customBlue: 'rgb(10, 38, 64)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			primaryColor: '#0A2640',
   			secondaryColor: '#1C3D5B',
+			deepOcean: 'rgb(10,38,64)',
+			slateBlue : 'rgb(91,112,117)',
+			jetBlack: 'rgb(0,0,0)',
+			inkBlue : '#0A2640',
+			stoneGray: '#5B7075',
+			charcoal:'#333333',
+			cloudWhite: '#f7f7f7',
+			powderedSnow:'#f1f1f1',
+			ashGray: 'rgb(142,142,142)',
+			warmGray:'#8e8e8e',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -98,6 +117,24 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+	[
+		function ({ addComponents }) {
+		  addComponents({
+			'.custom-flex': {
+			  display: 'flex',
+			  alignItems: 'center',
+			  fontSize: '24px',
+			  fontWeight: '400', // Normal weight
+			  gap: '1rem', // 4px gap
+			  lineHeight: '2rem', // Leading 8px
+			  marginTop: '1.5rem', // 6px margin-top
+			},
+		  });
+		},
+	  ],
+  ]
+  ,
+  
 }
 
