@@ -76,6 +76,9 @@
 
   }
 
+  .page-container {
+    @apply mt-[-88px];
+  }
 
   .custom-flex {
     @apply flex items-center text-[24px] font-normal gap-x-4 leading-8 mt-6;
@@ -90,7 +93,7 @@
   }
 
   .secction-css3{
-    @apply text-stoneGray font-sans text-[16px] font-normal h-[812.438px] leading-[23.2px] pb-[90.4px] pt-[90.4px] relative text-left w-full mb-[80px] 
+    @apply text-stoneGray font-sans text-[16px] font-normal leading-[23.2px] pb-[90.4px] pt-[90.4px] text-left w-full mb-[80px] 
   }
 
 }
