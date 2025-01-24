@@ -26,8 +26,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useNavigate } from "react-router"
 import GoogleAuthButton from "./GoogleAuthButton"
 import { IoIosArrowRoundBack } from "react-icons/io";
+import clsx from "clsx"
 
-const AuthButton = () => {
+interface AuthButtonProps {
+    className?: string;
+}
+
+const AuthButton = (props: AuthButtonProps) => {
     const [authTab, setAuthTab] = useState<"Login" | "OTP Login" | "Signup" | "Forgot Password">("Login");
 
     const [otp, setOtp] = useState<string>("");
@@ -211,7 +216,7 @@ const AuthButton = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <button className="bg-white text-primary px-4 py-2 rounded-full font-medium cursor-pointer">
+                <button className={clsx("bg-white text-primary px-4 py-2 rounded-full font-medium cursor-pointer", props.className)}>
                     Log In
                 </button>
             </DialogTrigger>
