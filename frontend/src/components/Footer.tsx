@@ -3,8 +3,8 @@ import { Link } from "react-router";
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-10">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Branding Section */}
           <div>
             <h3 className="text-3xl font-bold mb-4">Boldo</h3>
