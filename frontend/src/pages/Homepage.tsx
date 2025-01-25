@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Marquee from "@/components/ui/marquee";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
 import PageWrapper from "@/components/PageWrapper";
+import CallToAction from "@/components/CallToAction";
 
 const services = [
   {
@@ -86,7 +87,7 @@ const Homepage: React.FC = () => {
         </div>
 
         {/* Services Section */}
-        <section className="section-css1">
+        <section className="section-css1" id="services">
           <div className="mx-auto max-w-7xl px-4 relative text-start">
             <p className="mb-4 text-center text-[16px] sm:text-[20px] leading-[24px] sm:leading-[28px]">
               Our Services
@@ -405,6 +406,8 @@ const Homepage: React.FC = () => {
           </div>
 
         </section>
+
+        <CallToAction />
 
       </PageWrapper>
 
