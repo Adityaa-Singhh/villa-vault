@@ -118,7 +118,7 @@ export default {
 	},
 	plugins: [
 	  require("tailwindcss-animate"),
-	  require("@tailwindcss/line-clamp"), // Correct usage of the line-clamp plugin
+	  
 	  function ({ addComponents }) {
 		addComponents({
 		  '.custom-flex': {

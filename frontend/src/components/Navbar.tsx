@@ -28,10 +28,10 @@ const Navbar = () => {
         <>
             <nav className={clsx("sticky top-0 left-0 flex justify-between items-center px-14 py-4 sm:py-6 z-50 text-white", !navAtTop && "bg-primaryColor")}>
                 <h1 className="text-xl sm:text-2xl font-bold cursor-pointer ml-2">
-                    <a href="#home" className="hover:text-gray-300">Boldo</a>
+                    <a href="#" className="hover:text-gray-300">Boldo</a>
                 </h1>
                 <div className="md:flex hidden flex-wrap justify-center sm:justify-end items-center space-x-4 sm:space-x-6 mt-2 sm:mt-0">
-                    <a href="/" className="hover:text-gray-300 text-green-500">Home</a>
+                    <a href="#" className="hover:text-gray-300 text-green-500">Home</a>
                     <a href="#product" className="hover:text-gray-300">Product</a>
                     <a href="#services" className="hover:text-gray-300">Services</a>
                     <a href="#about" className="hover:text-gray-300">About</a>

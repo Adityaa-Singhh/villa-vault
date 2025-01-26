@@ -1,24 +1,37 @@
 import React, { useState } from "react";
-import Marquee from "@/components/ui/marquee";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
 import PageWrapper from "@/components/PageWrapper";
 import CallToAction from "@/components/CallToAction";
+import graphics from "../assets/graphics.png"
+import img1 from "../assets/img1.png"
+import img2 from "../assets/img2.png"
+import img3 from "../assets/img3.png"
+import img4 from "../assets/img4.png"
+import img5 from "../assets/img5.png"
+import img6 from "../assets/img6.png"
+import img7 from "../assets/img7.png"
+import img8 from "../assets/img1 small.png"
+import profile1 from "../assets/profile1.png"
+import img9 from "../assets/img5 small.png"
+import profile2 from "../assets/profile2.png"
+import img10 from "../assets/img8.png"
+import profile3 from "../assets/profile3.png"
 
 const services = [
   {
     title: "Ready To Use Solutions",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sed suscipit obcaecati unde explicabo animi expedita nesciunt officia, rerum iure consequatur assumenda velit.",
-    image: "https://asp-crm.indotalent.com/landing/assets/img/services/1.png",
+    image:img1,
   },
   {
     title: "Ready To Use Solutions",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sed suscipit obcaecati unde explicabo animi expedita nesciunt officia, rerum iure consequatur assumenda velit.",
-    image: "https://asp-crm.indotalent.com/landing/assets/img/services/2.png",
+    image: img2,
   },
   {
     title: "Ready To Use Solutions",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sed suscipit obcaecati unde explicabo animi expedita nesciunt officia, rerum iure consequatur assumenda velit.",
-    image: "https://asp-crm.indotalent.com/landing/assets/img/services/3.png",
+    image: img3,
   },
 ];
 
@@ -31,6 +44,7 @@ const Homepage: React.FC = () => {
 
   return (
     <>
+    
       <PageWrapper
         title="Villa Vault"
         description="One stop solution for your hunt for new property"
@@ -47,7 +61,7 @@ const Homepage: React.FC = () => {
           {/* Main Section */}
           <section>
             <div className="font-normal text-start text-base min-h-[630px] mx-auto max-w-7xl px-4 relative">
-              <div className="flex flex-col-reverse sm:flex-row items-center py-12 sm:py-[90px] h-auto">
+              <div className="flex flex-col-reverse sm:flex-row items-center pb-12 pt-20 sm:py-[90px] h-auto">
                 {/* Text Section */}
                 <div className="flex-1 max-w-full sm:max-w-[568px] sm:pr-8 sm:mr-[156px] sm:ml-4 text-center sm:text-left">
                   <h1 className="text-3xl sm:text-[48px] leading-normal mb-2">Rapid digital transformation.</h1>
@@ -64,7 +78,7 @@ const Homepage: React.FC = () => {
                 <div className="flex-1 max-w-full sm:max-w-[494px]">
                   <img
                     className="h-auto sm:h-[423px] max-w-full object-contain"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/hero/hero-graphics.png"
+                    src={graphics}
                     alt="Hero Graphics"
                   />
                 </div>
@@ -72,18 +86,7 @@ const Homepage: React.FC = () => {
             </div>
           </section>
 
-          <Marquee
-            className="text-gray-400 text-sm sm:text-lg py-4 sm:py-8"
-            pauseOnHover
-            repeat={4}
-            reverse={false}
-          >
-            <span>Boldo</span>
-            <span>Presto</span>
-            <span>Innovate</span>
-            <span>Grow</span>
-            <span>Success</span>
-          </Marquee>
+          
         </div>
 
         {/* Services Section */}
@@ -138,24 +141,24 @@ const Homepage: React.FC = () => {
               <div className="flex-1 px-4">
                 <img
                   className="w-full h-auto overflow-hidden align-middle rounded-md"
-                  src="https://asp-crm.indotalent.com/landing/assets/img/offer/1.png"
+                  src={img4}
                   alt="Managing Business"
                 />
               </div>
 
               {/* Text Section */}
               <div className="flex-1 px-4 text-center sm:text-left">
-                <h1 className="text-2xl sm:text-[40px] font-normal my-4 leading-snug">
+                <h1 className="text-2xl sm:text-[40px]  my-4 leading-snug font-bold ">
                   Managing Business Easily.
                 </h1>
-                <ul className="list-outside my-6 sm:my-12 font-normal text-sm sm:text-base">
-                  <li className="custom-flex mb-2">
+                <ul className="list-outside my-6 sm:my-12 font-normal text-sm sm:text-base sm:text-[23.04px]">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px]">
                     <span>Tailored software development</span>
                   </li>
-                  <li className="custom-flex mb-2">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px]">
                     <span>Managed cloud service.</span>
                   </li>
-                  <li className="custom-flex mb-2">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px]">
                     <span>ERP subject matter expert.</span>
                   </li>
                 </ul>
@@ -173,17 +176,17 @@ const Homepage: React.FC = () => {
             <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-8">
               {/* Text Section */}
               <div className="flex-1">
-                <h1 className="text-2xl sm:text-[40px] font-normal leading-snug mb-6">
+                <h1 className="text-2xl sm:text-[40px]  leading-snug mb-6 text-jetBlack font-bold">
                   Managing Business Easily.
                 </h1>
                 <ul className="list-none">
-                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md hover:bg-primaryColor transition-colors text-jetBlack hover:text-white ">
                     Tailored software development.
                   </li>
-                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md hover:bg-primaryColor transition-colors text-jetBlack hover:text-white ">
                     Managed cloud service.
                   </li>
-                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md">
+                  <li className="flex items-center text-lg sm:text-[23.04px] font-normal leading-8 sm:leading-[33.408px] mb-4 sm:mb-6 p-4 sm:p-[28.8px_16px] gap-4 sm:gap-[20px] rounded-md shadow-md hover:bg-primaryColor transition-colors text-jetBlack hover:text-white ">
                     ERP subject matter expert.
                   </li>
                 </ul>
@@ -193,7 +196,7 @@ const Homepage: React.FC = () => {
               <div className="flex-1">
                 <img
                   className="w-full h-auto rounded-md"
-                  src="https://asp-crm.indotalent.com/landing/assets/img/offer/2.png"
+                  src={img5}
                   alt="Managing Business"
                 />
               </div>
@@ -226,7 +229,7 @@ const Homepage: React.FC = () => {
                         </h4>
                         <div className="flex items-center gap-x-4 mt-12">
                           <img
-                            src="https://asp-crm.indotalent.com/landing/assets/img/review/1.png"
+                            src={img6}
                             alt=""
                             className="w-[50px] h-[50px] rounded-full"
                           />
@@ -248,7 +251,7 @@ const Homepage: React.FC = () => {
 
         <section className="secction-css3 flex-grow">
           <div className="mx-auto max-w-7xl px-4 relative text-start">
-            <img className="w-full max-w-auto h-auto object-contain" src="https://asp-crm.indotalent.com/landing/assets/img/offer/3.png" alt="Offer" />
+            <img className="w-full max-w-auto h-auto object-contain" src={img7} alt="Offer" />
             <div className="flex flex-wrap items-center mt-[48px]">
               <div className="text-left w-full px-[16px]">
                 <h2 className="text-jetBlack text-[33.1776px] font-normal h-[60px] leading-normal mb-[8px] mt-0 pt-[16px]">
@@ -301,7 +304,7 @@ const Homepage: React.FC = () => {
                 <a href="#">
                   <img
                     className="rounded-2xl w-full h-auto"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/1.png"
+                  src={img8}
                     alt=""
                   />
                 </a>
@@ -322,7 +325,7 @@ const Homepage: React.FC = () => {
                 <div className="flex items-center gap-4 mt-4">
                   <img
                     className="w-8 h-8 rounded-full"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/profile1.png"
+                    src={profile1}
                     alt=""
                   />
                   <a href="#">
@@ -338,7 +341,7 @@ const Homepage: React.FC = () => {
                 <a href="#">
                   <img
                     className="rounded-2xl w-full h-auto"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/2.png"
+                    src={img9}
                     alt=""
                   />
                 </a>
@@ -359,7 +362,7 @@ const Homepage: React.FC = () => {
                 <div className="flex items-center gap-4 mt-4">
                   <img
                     className="w-8 h-8 rounded-full"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/profile2.png"
+                    src={profile2}
                     alt=""
                   />
                   <a href="#">
@@ -373,7 +376,7 @@ const Homepage: React.FC = () => {
                 <a href="#">
                   <img
                     className="rounded-2xl w-full h-auto"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/3.png"
+                    src={img10}
                     alt=""
                   />
                 </a>
@@ -394,7 +397,7 @@ const Homepage: React.FC = () => {
                 <div className="flex items-center gap-4 mt-4">
                   <img
                     className="w-8 h-8 rounded-full"
-                    src="https://asp-crm.indotalent.com/landing/assets/img/blog/profile3.png"
+                    src={profile3}
                     alt=""
                   />
                   <a href="#">
